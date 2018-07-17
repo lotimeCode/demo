@@ -1,0 +1,8 @@
+# elasticsearch
+spring:
+  data:
+    elasticsearch:
+      cluster-name: elasticsearch
+      cluster-nodes: 118.31.73.111:9300
+      repositories:
+        enabled: true
