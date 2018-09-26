@@ -9,6 +9,8 @@ public class TestLog {
 
     private String agg;
 
+    private Integer num;
+
     public String getName() {
         return name;
     }
@@ -23,5 +25,13 @@ public class TestLog {
 
     public void setAgg(String agg) {
         this.agg = agg;
+    }
+
+    public Integer getNum() {
+        return num;
+    }
+
+    public void setNum(Integer num) {
+        this.num = num;
     }
 }
