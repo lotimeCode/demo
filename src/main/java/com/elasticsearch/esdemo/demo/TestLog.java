@@ -7,11 +7,21 @@ package com.elasticsearch.esdemo.demo;
 public class TestLog {
     private String name;
 
+    private String agg;
+
     public String getName() {
         return name;
     }
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getAgg() {
+        return agg;
+    }
+
+    public void setAgg(String agg) {
+        this.agg = agg;
     }
 }
