@@ -34,7 +34,7 @@ public class NIOServer {
                             SelectionKey key = keyIterator.next();
                             if(key.isAcceptable()){
                                 try {
-                                    ServerSocketChannel clientChannel = ServerSocketChannel.open();
+                                    SocketChannel clientChannel = ((ServerSocketChannel) key.channel()).accept();
                                     clientChannel.configureBlocking(false);
                                     clientChannel.register(clientSelector,SelectionKey.OP_READ);
                                 }finally {
