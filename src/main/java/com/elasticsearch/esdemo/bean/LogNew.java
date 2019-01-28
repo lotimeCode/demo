@@ -4,7 +4,7 @@ package com.elasticsearch.esdemo.bean;
  * @author wangzhimin
  * @version create 2018/7/5 13:47
  */
-public class LogNew {
+public class LogNew implements Cloneable{
     private String hostname;
 
     private String log;

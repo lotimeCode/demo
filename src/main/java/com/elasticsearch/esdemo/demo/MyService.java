@@ -1,5 +1,8 @@
 package com.elasticsearch.esdemo.demo;
 
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.Semaphore;
 import java.util.concurrent.atomic.AtomicInteger;
 
 /**
@@ -17,6 +20,8 @@ public class MyService {
         Thread2 thread2 = new Thread2(service);
         thread1.start();
         thread2.start();
+
+        ExecutorService executorService = Executors.newFixedThreadPool(12);
     }
 }
 
