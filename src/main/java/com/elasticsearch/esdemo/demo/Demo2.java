@@ -1,24 +1,16 @@
 package com.elasticsearch.esdemo.demo;
 
-import org.apache.commons.lang.StringUtils;
-
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Date;
 import java.util.List;
-import java.util.concurrent.atomic.AtomicBoolean;
-import java.util.concurrent.atomic.AtomicIntegerArray;
-import java.util.concurrent.atomic.AtomicIntegerFieldUpdater;
-import java.util.concurrent.atomic.AtomicLong;
-import java.util.regex.Pattern;
+import java.util.concurrent.*;
 
 /**
  * @author wangzhimin
  * @version create 2018/11/2 18:27
  */
 public class Demo2 {
-    public static void main(String[] args){
+    public static void main(String[] args) throws Exception{
         String str = "lotim  shi     aaa";
         for(String s : str.split("[\\s,|]+")){
             System.out.println(s);
@@ -41,6 +33,38 @@ public class Demo2 {
 //
 //        }
 
+
+        ExecutorService executorService = Executors.newFixedThreadPool(5);
+
+        List<Task> taskList = new ArrayList<>(10);
+        for(int i=0;i<10;i++){
+            taskList.add(new Task(i+""));
+        }
+
+        long start = System.currentTimeMillis();
+        List<Future<String>> futureList = executorService.invokeAll(taskList);
+        long end = System.currentTimeMillis();
+        System.out.println("cost time: " + (end - start));
+
+        for(Future<String> future : futureList){
+            System.out.println(future.get());
+        }
+        executorService.shutdownNow();
+
+    }
+}
+
+class Task implements Callable<String>{
+    private String num;
+
+    public Task(String num) {
+        this.num = num;
+    }
+
+    @Override
+    public String call() throws Exception {
+        TimeUnit.SECONDS.sleep(5);
+        return "task_" + this.num;
     }
 }
 
